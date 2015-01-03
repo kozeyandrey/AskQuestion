@@ -36,7 +36,7 @@ class Question
      */
     protected $tags;
     /**
-     * @ORM\OneToMany(targetEntity="response", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Response", mappedBy="question")
      */
     protected $response;
 
