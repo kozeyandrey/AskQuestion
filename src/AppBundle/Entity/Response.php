@@ -29,7 +29,6 @@ class Response
      */
     protected $question;
 
-
     /**
      * Get id
      *

@@ -41,6 +41,14 @@ class Question
     protected $response;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->response = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -117,13 +125,6 @@ class Question
     public function getTags()
     {
         return $this->tags;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
