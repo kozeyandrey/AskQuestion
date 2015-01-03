@@ -48,6 +48,7 @@ class Question
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
      * Get id
      *
@@ -130,10 +131,10 @@ class Question
     /**
      * Add response
      *
-     * @param \AppBundle\Entity\response $response
+     * @param \AppBundle\Entity\Response $response
      * @return Question
      */
-    public function addResponse(\AppBundle\Entity\response $response)
+    public function addResponse(\AppBundle\Entity\Response $response)
     {
         $this->response[] = $response;
 
@@ -143,9 +144,9 @@ class Question
     /**
      * Remove response
      *
-     * @param \AppBundle\Entity\response $response
+     * @param \AppBundle\Entity\Response $response
      */
-    public function removeResponse(\AppBundle\Entity\response $response)
+    public function removeResponse(\AppBundle\Entity\Response $response)
     {
         $this->response->removeElement($response);
     }
