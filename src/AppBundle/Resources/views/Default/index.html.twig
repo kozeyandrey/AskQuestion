@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="container">
+
+        {% for question in questions %}
+            {{ question.name }}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
