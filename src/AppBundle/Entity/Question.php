@@ -47,6 +47,18 @@ class Question
      */
     private $slug;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="answer", type="integer")
+     */
+    protected $answer;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer")
+     */
+    protected $views;
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -70,6 +82,8 @@ class Question
      */
     public function __construct()
     {
+        $this->answer = 0;
+        $this->views = 0;
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -286,5 +300,51 @@ class Question
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param integer $answer
+     * @return Question
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return integer 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * Set views
+     *
+     * @param integer $views
+     * @return Question
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer 
+     */
+    public function getViews()
+    {
+        return $this->views;
     }
 }
