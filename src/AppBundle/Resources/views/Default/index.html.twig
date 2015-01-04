@@ -17,10 +17,8 @@
                                 <h5>Answer</h5>
                             </div>
                             <div class="col-md-8">
-                                <h3><a href="#">{{ question.name }}</a></h3>
-                                {% for tag in question.tags %}
-                                    <a href="#" class="btn btn-primary" role="button">{{ tag.name }}</a>
-                                {% endfor %}
+                                <h3><a href="#">{{ question.title }}</a></h3>
+                                    <a href="#" class="btn btn-primary" role="button">{{ question.tag.name }}</a>
                             </div>
                             <div class="col-md-2">
                             <ul class="nav nav-pills" role="tablist">
