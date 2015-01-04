@@ -1,10 +1,21 @@
 {% extends "::base.html.twig" %}
 {% block body %}
-    <div class="container">
 
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body">
         {% for question in questions %}
-            {{ question.name }}
+            <h3>{{ question.name }}</h3>
+            {% for tag in question.tags %}
+                <a href="#" class="btn btn-primary" role="button">{{ tag.name }}</a>
+            {% endfor %}
         {% endfor %}
+                    </div>
+                 </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
