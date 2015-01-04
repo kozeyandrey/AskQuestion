@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="question")
- */
-class Question
+* @ORM\Entity
+* @ORM\Table(name="tag")
+*/
+class Tag
 {
     /**
      * @var integer
@@ -26,21 +26,12 @@ class Question
      * @ORM\Column(name="name", type="string", length=255)
      */
     protected $name;
+
     /**
      * @var string
-     * @ORM\Column(name="description", type="text")
+     * @ORM\ManyToMany(targetEntity="Question", mappedBy="tags")
      */
-    protected $description;
-    /**
-     * @var string
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="questions")
-     * @ORM\JoinTable(name="tag_and_question")
-     */
-    protected $tags;
-    /**
-     * @ORM\OneToMany(targetEntity="Response", mappedBy="question")
-     */
-    protected $response;
+    protected $questions;
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=128, unique=true)
@@ -70,8 +61,7 @@ class Question
      */
     public function __construct()
     {
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->response = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -88,7 +78,7 @@ class Question
      * Set name
      *
      * @param string $name
-     * @return Question
+     * @return Tag
      */
     public function setName($name)
     {
@@ -108,33 +98,10 @@ class Question
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     * @return Question
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set slug
      *
      * @param string $slug
-     * @return Question
+     * @return Tag
      */
     public function setSlug($slug)
     {
@@ -157,7 +124,7 @@ class Question
      * Set created
      *
      * @param \DateTime $created
-     * @return Question
+     * @return Tag
      */
     public function setCreated($created)
     {
@@ -180,7 +147,7 @@ class Question
      * Set updated
      *
      * @param \DateTime $updated
-     * @return Question
+     * @return Tag
      */
     public function setUpdated($updated)
     {
@@ -203,7 +170,7 @@ class Question
      * Set deletedAt
      *
      * @param \DateTime $deletedAt
-     * @return Question
+     * @return Tag
      */
     public function setDeletedAt($deletedAt)
     {
@@ -223,68 +190,35 @@ class Question
     }
 
     /**
-     * Add tags
+     * Add questions
      *
-     * @param \AppBundle\Entity\Tag $tags
-     * @return Question
+     * @param \AppBundle\Entity\Question $questions
+     * @return Tag
      */
-    public function addTag(\AppBundle\Entity\Tag $tags)
+    public function addQuestion(\AppBundle\Entity\Question $questions)
     {
-        $this->tags[] = $tags;
+        $this->questions[] = $questions;
 
         return $this;
     }
 
     /**
-     * Remove tags
+     * Remove questions
      *
-     * @param \AppBundle\Entity\Tag $tags
+     * @param \AppBundle\Entity\Question $questions
      */
-    public function removeTag(\AppBundle\Entity\Tag $tags)
+    public function removeQuestion(\AppBundle\Entity\Question $questions)
     {
-        $this->tags->removeElement($tags);
+        $this->questions->removeElement($questions);
     }
 
     /**
-     * Get tags
+     * Get questions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTags()
+    public function getQuestions()
     {
-        return $this->tags;
-    }
-
-    /**
-     * Add response
-     *
-     * @param \AppBundle\Entity\Response $response
-     * @return Question
-     */
-    public function addResponse(\AppBundle\Entity\Response $response)
-    {
-        $this->response[] = $response;
-
-        return $this;
-    }
-
-    /**
-     * Remove response
-     *
-     * @param \AppBundle\Entity\Response $response
-     */
-    public function removeResponse(\AppBundle\Entity\Response $response)
-    {
-        $this->response->removeElement($response);
-    }
-
-    /**
-     * Get response
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getResponse()
-    {
-        return $this->response;
+        return $this->questions;
     }
 }

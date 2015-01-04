@@ -48,6 +48,7 @@ class Response
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
+
     /**
      * Get id
      *
@@ -79,52 +80,6 @@ class Response
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set question
-     *
-     * @param \AppBundle\Entity\Question $question
-     * @return Response
-     */
-    public function setQuestion(\AppBundle\Entity\Question $question = null)
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    /**
-     * Get question
-     *
-     * @return \AppBundle\Entity\Question 
-     */
-    public function getQuestion()
-    {
-        return $this->question;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Response
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -194,5 +149,28 @@ class Response
     public function getDeletedAt()
     {
         return $this->deletedAt;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \AppBundle\Entity\Question $question
+     * @return Response
+     */
+    public function setQuestion(\AppBundle\Entity\Question $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \AppBundle\Entity\Question 
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }
