@@ -23,9 +23,9 @@ class Question
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    protected $name;
+    protected $title;
     /**
      * @var string
      * @ORM\Column(name="description", type="text")
@@ -33,10 +33,9 @@ class Question
     protected $description;
     /**
      * @var string
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="questions")
-     * @ORM\JoinTable(name="tag_and_question")
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="question")
      */
-    protected $tags;
+    protected $tag;
     /**
      * @ORM\OneToMany(targetEntity="Response", mappedBy="question")
      */
@@ -54,7 +53,7 @@ class Question
      */
     private $dislike;
     /**
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -94,11 +93,10 @@ class Question
      */
     public function __construct()
     {
-        $this->answer = 0;
-        $this->views = 0;
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -111,26 +109,26 @@ class Question
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
+     * @param string $title
      * @return Question
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -157,6 +155,52 @@ class Question
     }
 
     /**
+     * Set like
+     *
+     * @param integer $like
+     * @return Question
+     */
+    public function setLike($like)
+    {
+        $this->like = $like;
+
+        return $this;
+    }
+
+    /**
+     * Get like
+     *
+     * @return integer 
+     */
+    public function getLike()
+    {
+        return $this->like;
+    }
+
+    /**
+     * Set dislike
+     *
+     * @param integer $dislike
+     * @return Question
+     */
+    public function setDislike($dislike)
+    {
+        $this->dislike = $dislike;
+
+        return $this;
+    }
+
+    /**
+     * Get dislike
+     *
+     * @return integer 
+     */
+    public function getDislike()
+    {
+        return $this->dislike;
+    }
+
+    /**
      * Set slug
      *
      * @param string $slug
@@ -177,6 +221,52 @@ class Question
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param integer $answer
+     * @return Question
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return integer 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * Set views
+     *
+     * @param integer $views
+     * @return Question
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer 
+     */
+    public function getViews()
+    {
+        return $this->views;
     }
 
     /**
@@ -249,36 +339,26 @@ class Question
     }
 
     /**
-     * Add tags
+     * Set tag
      *
-     * @param \AppBundle\Entity\Tag $tags
+     * @param \AppBundle\Entity\Tag $tag
      * @return Question
      */
-    public function addTag(\AppBundle\Entity\Tag $tags)
+    public function setTag(\AppBundle\Entity\Tag $tag = null)
     {
-        $this->tags[] = $tags;
+        $this->tag = $tag;
 
         return $this;
     }
 
     /**
-     * Remove tags
+     * Get tag
      *
-     * @param \AppBundle\Entity\Tag $tags
+     * @return \AppBundle\Entity\Tag 
      */
-    public function removeTag(\AppBundle\Entity\Tag $tags)
+    public function getTag()
     {
-        $this->tags->removeElement($tags);
-    }
-
-    /**
-     * Get tags
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTags()
-    {
-        return $this->tags;
+        return $this->tag;
     }
 
     /**
@@ -312,97 +392,5 @@ class Question
     public function getResponse()
     {
         return $this->response;
-    }
-
-    /**
-     * Set answer
-     *
-     * @param integer $answer
-     * @return Question
-     */
-    public function setAnswer($answer)
-    {
-        $this->answer = $answer;
-
-        return $this;
-    }
-
-    /**
-     * Get answer
-     *
-     * @return integer 
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
-    }
-
-    /**
-     * Set views
-     *
-     * @param integer $views
-     * @return Question
-     */
-    public function setViews($views)
-    {
-        $this->views = $views;
-
-        return $this;
-    }
-
-    /**
-     * Get views
-     *
-     * @return integer 
-     */
-    public function getViews()
-    {
-        return $this->views;
-    }
-
-    /**
-     * Set like
-     *
-     * @param integer $like
-     * @return Question
-     */
-    public function setLike($like)
-    {
-        $this->like = $like;
-
-        return $this;
-    }
-
-    /**
-     * Get like
-     *
-     * @return integer 
-     */
-    public function getLike()
-    {
-        return $this->like;
-    }
-
-    /**
-     * Set dislike
-     *
-     * @param integer $dislike
-     * @return Question
-     */
-    public function setDislike($dislike)
-    {
-        $this->dislike = $dislike;
-
-        return $this;
-    }
-
-    /**
-     * Get dislike
-     *
-     * @return integer 
-     */
-    public function getDislike()
-    {
-        return $this->dislike;
     }
 }
