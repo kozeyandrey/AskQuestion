@@ -30,6 +30,18 @@ class Response
      */
     protected $question;
     /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", name="`like`", nullable=true)
+     */
+    private $like;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dislike;
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -172,5 +184,51 @@ class Response
     public function getQuestion()
     {
         return $this->question;
+    }
+
+    /**
+     * Set like
+     *
+     * @param integer $like
+     * @return Response
+     */
+    public function setLike($like)
+    {
+        $this->like = $like;
+
+        return $this;
+    }
+
+    /**
+     * Get like
+     *
+     * @return integer 
+     */
+    public function getLike()
+    {
+        return $this->like;
+    }
+
+    /**
+     * Set dislike
+     *
+     * @param integer $dislike
+     * @return Response
+     */
+    public function setDislike($dislike)
+    {
+        $this->dislike = $dislike;
+
+        return $this;
+    }
+
+    /**
+     * Get dislike
+     *
+     * @return integer 
+     */
+    public function getDislike()
+    {
+        return $this->dislike;
     }
 }

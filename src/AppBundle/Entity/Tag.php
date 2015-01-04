@@ -29,9 +29,9 @@ class Tag
 
     /**
      * @var string
-     * @ORM\ManyToMany(targetEntity="Question", mappedBy="tags")
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="tag")
      */
-    protected $questions;
+    protected $question;
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=128, unique=true)
@@ -56,12 +56,13 @@ class Tag
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->question = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -190,35 +191,35 @@ class Tag
     }
 
     /**
-     * Add questions
+     * Add question
      *
-     * @param \AppBundle\Entity\Question $questions
+     * @param \AppBundle\Entity\Question $question
      * @return Tag
      */
-    public function addQuestion(\AppBundle\Entity\Question $questions)
+    public function addQuestion(\AppBundle\Entity\Question $question)
     {
-        $this->questions[] = $questions;
+        $this->question[] = $question;
 
         return $this;
     }
 
     /**
-     * Remove questions
+     * Remove question
      *
-     * @param \AppBundle\Entity\Question $questions
+     * @param \AppBundle\Entity\Question $question
      */
-    public function removeQuestion(\AppBundle\Entity\Question $questions)
+    public function removeQuestion(\AppBundle\Entity\Question $question)
     {
-        $this->questions->removeElement($questions);
+        $this->question->removeElement($question);
     }
 
     /**
-     * Get questions
+     * Get question
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getQuestions()
+    public function getQuestion()
     {
-        return $this->questions;
+        return $this->question;
     }
 }
