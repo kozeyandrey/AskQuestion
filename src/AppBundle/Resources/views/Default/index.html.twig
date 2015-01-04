@@ -2,22 +2,39 @@
 {% block body %}
 
     <div class="container">
+        <h1>Top questions</h1>
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {% for question in questions %}
-                            <h3>{{ question.name }}</h3>
-                            {% for tag in question.tags %}
-                                <a href="#" class="btn btn-primary" role="button">{{ tag.name }}</a>
-                            {% endfor %}
+                            <div class="col-md-1">
+                                <h3>{{ question.answer }}</h3>
+                                <h5>Views</h5>
+                            </div>
+                            <div class="col-md-1">
+                                <h3>{{ question.views }}</h3>
+                                <h5>Answer</h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h3><a href="#">{{ question.name }}</a></h3>
+                                {% for tag in question.tags %}
+                                    <a href="#" class="btn btn-primary" role="button">{{ tag.name }}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-2">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation"><a href="#">Like<span class="badge">42</span></a></li>
+                                <li role="presentation"><a href="#">Dislike<span class="badge">42</span></a></li>
+                            </ul>
+                            </div>
                         {% endfor %}
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
-
 
 
