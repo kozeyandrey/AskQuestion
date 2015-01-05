@@ -21,6 +21,7 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
         $question->setTag($tag);
         $question->setViews(0);
         $question->setAnswer(0);
+        $question->setCode("<php? echo 'Hello world'; ");
         $manager->persist($question);
         $manager->flush();
 

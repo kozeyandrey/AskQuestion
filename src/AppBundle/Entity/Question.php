@@ -33,6 +33,11 @@ class Question
     protected $description;
     /**
      * @var string
+     * @ORM\Column(name="code", type="text")
+     */
+    protected $code;
+    /**
+     * @var string
      * @ORM\ManyToOne(targetEntity="Tag", inversedBy="question")
      */
     protected $tag;
@@ -392,5 +397,28 @@ class Question
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Question
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

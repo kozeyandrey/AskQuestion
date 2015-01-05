@@ -18,6 +18,7 @@ class LoadResponse extends AbstractFixture implements OrderedFixtureInterface
         $response = new Response();
         $response->setQuestion($question);
         $response->setDescription("http://eax.me/git-commands/");
+        $response->setCode("<php? echo 'Hello world'; ");
         $manager->persist($response);
         $manager->flush();
         $this->addReference('response', $response);

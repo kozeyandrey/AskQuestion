@@ -30,6 +30,11 @@ class Response
      */
     protected $question;
     /**
+     * @var string
+     * @ORM\Column(name="code", type="text")
+     */
+    protected $code;
+    /**
      * @var integer
      *
      * @ORM\Column(type="integer", name="`like`", nullable=true)
@@ -230,5 +235,28 @@ class Response
     public function getDislike()
     {
         return $this->dislike;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Response
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }
