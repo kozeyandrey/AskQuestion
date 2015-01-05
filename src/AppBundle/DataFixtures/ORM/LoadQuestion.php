@@ -16,11 +16,12 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
     {
         $tag = $manager->getRepository("AppBundle:Tag")->findOneByName("Github");
         $question = new Question();
-        $question->setName("How I can push to Github?");
+        $question->setTitle("How I can push to Github?");
         $question->setDescription("I don't know how push to github. Please help me!");
-        $question->addTag($tag);
+        $question->setTag($tag);
         $question->setViews(0);
         $question->setAnswer(0);
+        $question->setCode("<php? echo 'Hello world'; ");
         $manager->persist($question);
         $manager->flush();
 
