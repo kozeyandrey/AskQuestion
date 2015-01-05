@@ -38,7 +38,7 @@ class Question
     protected $code;
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="question", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="question")
      */
     protected $tag;
     /**
