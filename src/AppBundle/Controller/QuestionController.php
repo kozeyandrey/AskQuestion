@@ -28,7 +28,7 @@ class QuestionController extends Controller
         if ($form->isValid()) {
             return $this->redirect($this->generateUrl('home'));
             }
-        return $this->render('AppBundle:AskQuestion:ask.html.twig', array(
+        return $this->render('AppBundle:Question:ask.html.twig', array(
             'form' => $form->createView()));
 
 //        return [

@@ -10,8 +10,9 @@ class AskQuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text')
-            ->add('description','text')
+            ->add('title','text')
+            ->add('description')
+            ->add('code')
             ->add('tag','text');
     }
 
