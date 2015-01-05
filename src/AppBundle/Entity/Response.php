@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="response")
+ * @ORM\Table(name="responses")
  */
 class Response
 {
@@ -19,6 +19,7 @@ class Response
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @var string
      * @ORM\Column(name="description", type="text")
@@ -32,11 +33,13 @@ class Response
      * @Assert\NotBlank()
      */
     protected $question;
+
     /**
      * @var string
      * @ORM\Column(name="code", type="text")
      */
     protected $code;
+
     /**
      * @var \DateTime $created
      *
@@ -52,16 +55,16 @@ class Response
      * @ORM\Column(type="datetime")
      */
     private $updated;
+
     /**
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +74,7 @@ class Response
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string   $description
      * @return Response
      */
     public function setDescription($description)
@@ -84,7 +87,7 @@ class Response
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -94,10 +97,10 @@ class Response
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Response
      */
-    public function setCreated($created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
 
@@ -107,7 +110,7 @@ class Response
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -117,10 +120,10 @@ class Response
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Response
      */
-    public function setUpdated($updated)
+    public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
 
@@ -130,7 +133,7 @@ class Response
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -140,10 +143,10 @@ class Response
     /**
      * Set deletedAt
      *
-     * @param \DateTime $deletedAt
+     * @param  \DateTime $deletedAt
      * @return Response
      */
-    public function setDeletedAt($deletedAt)
+    public function setDeletedAt(\DateTime $deletedAt)
     {
         $this->deletedAt = $deletedAt;
 
@@ -153,7 +156,7 @@ class Response
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
@@ -163,7 +166,7 @@ class Response
     /**
      * Set question
      *
-     * @param \AppBundle\Entity\Question $question
+     * @param  \AppBundle\Entity\Question $question
      * @return Response
      */
     public function setQuestion(\AppBundle\Entity\Question $question = null)
@@ -176,7 +179,7 @@ class Response
     /**
      * Get question
      *
-     * @return \AppBundle\Entity\Question 
+     * @return \AppBundle\Entity\Question
      */
     public function getQuestion()
     {
@@ -186,7 +189,7 @@ class Response
     /**
      * Set code
      *
-     * @param string $code
+     * @param  string   $code
      * @return Response
      */
     public function setCode($code)
@@ -199,7 +202,7 @@ class Response
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
