@@ -1,1 +1,36 @@
-{{ form_widget() }}
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <legend>Question:</legend>
+        <div class="active">
+            <b>Title</b>
+            {{ form_errors(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="active">
+            <b>Description</b>
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="active">
+            <b>Code</b>
+            {{ form_errors(form.code) }}
+            {{ form_widget(form.code, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="active">
+            <b>Tag</b>
+            {{ form_errors(form.tag) }}
+            {{ form_widget(form.tag, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="panel-body">
+            <input type="submit" class="btn btn-primary" value="Send">
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
