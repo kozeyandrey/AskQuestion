@@ -48,13 +48,13 @@ class Question
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", name="`like`", nullable=true)
+     * @ORM\Column(type="integer", name="like", nullable=true)
      */
     private $like;
     /**
      * @var integer
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", name="dislike", nullable=true)
      */
     private $dislike;
     /**
