@@ -4,11 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="tag")
-*/
+ * @ORM\Entity
+ * @ORM\Table(name="tag")
+ */
 class Tag
 {
     /**
@@ -22,16 +23,16 @@ class Tag
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     protected $name;
 
     /**
      * @var string
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="tag")
+     * @ORM\ManyToMany(targetEntity="Question", mappedBy="tags")
      */
-    protected $question;
+    protected $questions;
     /**
      * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(length=128, unique=true)
@@ -56,13 +57,12 @@ class Tag
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->question = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -191,35 +191,35 @@ class Tag
     }
 
     /**
-     * Add question
+     * Add questions
      *
-     * @param \AppBundle\Entity\Question $question
+     * @param \AppBundle\Entity\Question $questions
      * @return Tag
      */
-    public function addQuestion(\AppBundle\Entity\Question $question)
+    public function addQuestion(\AppBundle\Entity\Question $questions)
     {
-        $this->question[] = $question;
+        $this->questions[] = $questions;
 
         return $this;
     }
 
     /**
-     * Remove question
+     * Remove questions
      *
-     * @param \AppBundle\Entity\Question $question
+     * @param \AppBundle\Entity\Question $questions
      */
-    public function removeQuestion(\AppBundle\Entity\Question $question)
+    public function removeQuestion(\AppBundle\Entity\Question $questions)
     {
-        $this->question->removeElement($question);
+        $this->questions->removeElement($questions);
     }
 
     /**
-     * Get question
+     * Get questions
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getQuestion()
+    public function getQuestions()
     {
-        return $this->question;
+        return $this->questions;
     }
 }

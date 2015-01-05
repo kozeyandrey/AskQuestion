@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -21,12 +22,14 @@ class Response
     /**
      * @var string
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     protected $description;
     /**
      * @var string
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="response",cascade={"persist"})
      * @ORM\JoinColumn(name="question", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     protected $question;
     /**
@@ -34,18 +37,6 @@ class Response
      * @ORM\Column(name="code", type="text")
      */
     protected $code;
-    /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", name="`like`", nullable=true)
-     */
-    private $like;
-    /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $dislike;
     /**
      * @var \DateTime $created
      *
@@ -65,6 +56,7 @@ class Response
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
     private $deletedAt;
+
 
     /**
      * Get id
@@ -189,52 +181,6 @@ class Response
     public function getQuestion()
     {
         return $this->question;
-    }
-
-    /**
-     * Set like
-     *
-     * @param integer $like
-     * @return Response
-     */
-    public function setLike($like)
-    {
-        $this->like = $like;
-
-        return $this;
-    }
-
-    /**
-     * Get like
-     *
-     * @return integer 
-     */
-    public function getLike()
-    {
-        return $this->like;
-    }
-
-    /**
-     * Set dislike
-     *
-     * @param integer $dislike
-     * @return Response
-     */
-    public function setDislike($dislike)
-    {
-        $this->dislike = $dislike;
-
-        return $this;
-    }
-
-    /**
-     * Get dislike
-     *
-     * @return integer 
-     */
-    public function getDislike()
-    {
-        return $this->dislike;
     }
 
     /**

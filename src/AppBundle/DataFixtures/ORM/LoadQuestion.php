@@ -18,10 +18,7 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
         $question = new Question();
         $question->setTitle("How I can push to Github?");
         $question->setDescription("I don't know how push to github. Please help me!");
-        $question->setTag($tag);
-        $question->setViews(0);
-        $question->setAnswer(0);
-        $question->setCode("<php? echo 'Hello world'; ");
+        $question->addTag($tag);
         $manager->persist($question);
         $manager->flush();
 

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -22,39 +23,41 @@ class Question
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="title", type="string", length=255)
      */
     protected $title;
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\Column(name="description", type="text")
      */
     protected $description;
     /**
      * @var string
-     * @ORM\Column(name="code", type="text", nullable=true)
+     * @ORM\Column(name="code", type="text")
      */
     protected $code;
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="question")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="questions")
+     * @ORM\JoinTable(name="tag_and_question")
      */
-    protected $tag;
+    protected $tags;
     /**
      * @ORM\OneToMany(targetEntity="Response", mappedBy="question")
      */
     protected $response;
     /**
      * @var integer
-     *
-     * @ORM\Column(type="integer", name="like", nullable=true)
+     * @Assert\Range(min = 0)
+     * @ORM\Column(type="integer", name="like")
      */
     private $like;
     /**
      * @var integer
-     *
-     * @ORM\Column(type="integer", name="dislike", nullable=true)
+     * @Assert\Range(min = 0)
+     * @ORM\Column(type="integer", name="dislike")
      */
     private $dislike;
     /**
@@ -98,10 +101,13 @@ class Question
      */
     public function __construct()
     {
-        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->answer = 0;
+        $this->views = 0;
+        $this->like = 0;
+        $this->dislike = 0;
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -344,26 +350,36 @@ class Question
     }
 
     /**
-     * Set tag
+     * Add tags
      *
-     * @param \AppBundle\Entity\Tag $tag
+     * @param \AppBundle\Entity\Tag $tags
      * @return Question
      */
-    public function setTag(\AppBundle\Entity\Tag $tag = null)
+    public function addTag(\AppBundle\Entity\Tag $tags)
     {
-        $this->tag = $tag;
+        $this->tags[] = $tags;
 
         return $this;
     }
 
     /**
-     * Get tag
+     * Remove tags
      *
-     * @return \AppBundle\Entity\Tag 
+     * @param \AppBundle\Entity\Tag $tags
      */
-    public function getTag()
+    public function removeTag(\AppBundle\Entity\Tag $tags)
     {
-        return $this->tag;
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 
     /**
