@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tag")
+ * @ORM\Table(name="tags")
  */
 class Tag
 {
@@ -68,7 +68,7 @@ class Tag
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class Tag
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Tag
      */
     public function setName($name)
@@ -91,7 +91,7 @@ class Tag
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -101,7 +101,7 @@ class Tag
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Tag
      */
     public function setSlug($slug)
@@ -114,7 +114,7 @@ class Tag
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -124,7 +124,7 @@ class Tag
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Tag
      */
     public function setCreated($created)
@@ -137,7 +137,7 @@ class Tag
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -147,7 +147,7 @@ class Tag
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Tag
      */
     public function setUpdated($updated)
@@ -160,7 +160,7 @@ class Tag
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -170,7 +170,7 @@ class Tag
     /**
      * Set deletedAt
      *
-     * @param \DateTime $deletedAt
+     * @param  \DateTime $deletedAt
      * @return Tag
      */
     public function setDeletedAt($deletedAt)
@@ -183,7 +183,7 @@ class Tag
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
@@ -193,7 +193,7 @@ class Tag
     /**
      * Add questions
      *
-     * @param \AppBundle\Entity\Question $questions
+     * @param  \AppBundle\Entity\Question $questions
      * @return Tag
      */
     public function addQuestion(\AppBundle\Entity\Question $questions)
@@ -216,7 +216,7 @@ class Tag
     /**
      * Get questions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getQuestions()
     {
