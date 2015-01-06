@@ -7,3 +7,8 @@ ask:
     path: /ask
     methods: [GET,POST]
     defaults: { _controller: AppBundle:Question:ask}
+
+all:
+    path: /all
+    methods: [GET]
+    defaults: { _controller: AppBundle:Question:all}
