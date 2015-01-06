@@ -13,7 +13,7 @@ class AskQuestionType extends AbstractType
             ->add('title','text')
             ->add('description')
             ->add('code')
-            ->add('tag','text');
+            ->add('tags', new TagType());
     }
 
     public function getName()
