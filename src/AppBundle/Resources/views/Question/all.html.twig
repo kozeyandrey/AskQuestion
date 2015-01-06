@@ -1,0 +1,6 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    {% for question in questions %}
+        {{ question.title }}
+    {% endfor %}
+{% endblock %}

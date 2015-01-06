@@ -37,4 +37,18 @@ class QuestionController extends Controller
         return $this->render('AppBundle:Question:ask.html.twig', array(
             'form' => $form->createView()));
     }
+
+    /**
+     * This method show all questions
+     *
+     * @return array
+     *
+     * @Template()
+     */
+    public function allAction(){
+        $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        return [
+            "questions"=>$questions
+        ];
+    }
 }
