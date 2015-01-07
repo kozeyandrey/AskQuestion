@@ -30,6 +30,7 @@ class QuestionController extends Controller
         $form = $this->createForm(new AskQuestionType(), $question);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $question->setTags($form->get('tags')->getData());
             $this->manager()->persist($question);
             $this->manager()->flush();
             return $this->redirect($this->generateUrl('home'));

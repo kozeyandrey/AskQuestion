@@ -106,17 +106,11 @@ class Question
     /**
      * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
      */
-    private $deletedAt;
-
-    /**
+    private $deletedAt;    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->answer = 0;
-        $this->views = 0;
-        $this->like = 0;
-        $this->dislike = 0;
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -124,7 +118,7 @@ class Question
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -134,7 +128,7 @@ class Question
     /**
      * Set title
      *
-     * @param  string   $title
+     * @param string $title
      * @return Question
      */
     public function setTitle($title)
@@ -147,7 +141,7 @@ class Question
     /**
      * Get title
      *
-     * @return string
+     * @return string 
      */
     public function getTitle()
     {
@@ -157,7 +151,7 @@ class Question
     /**
      * Set description
      *
-     * @param  string   $description
+     * @param string $description
      * @return Question
      */
     public function setDescription($description)
@@ -170,7 +164,7 @@ class Question
     /**
      * Get description
      *
-     * @return string
+     * @return string 
      */
     public function getDescription()
     {
@@ -178,9 +172,32 @@ class Question
     }
 
     /**
+     * Set code
+     *
+     * @param string $code
+     * @return Question
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
      * Set like
      *
-     * @param  integer  $like
+     * @param integer $like
      * @return Question
      */
     public function setLike($like)
@@ -193,7 +210,7 @@ class Question
     /**
      * Get like
      *
-     * @return integer
+     * @return integer 
      */
     public function getLike()
     {
@@ -203,7 +220,7 @@ class Question
     /**
      * Set dislike
      *
-     * @param  integer  $dislike
+     * @param integer $dislike
      * @return Question
      */
     public function setDislike($dislike)
@@ -216,7 +233,7 @@ class Question
     /**
      * Get dislike
      *
-     * @return integer
+     * @return integer 
      */
     public function getDislike()
     {
@@ -226,7 +243,7 @@ class Question
     /**
      * Set slug
      *
-     * @param  string   $slug
+     * @param string $slug
      * @return Question
      */
     public function setSlug($slug)
@@ -239,7 +256,7 @@ class Question
     /**
      * Get slug
      *
-     * @return string
+     * @return string 
      */
     public function getSlug()
     {
@@ -249,7 +266,7 @@ class Question
     /**
      * Set answer
      *
-     * @param  integer  $answer
+     * @param integer $answer
      * @return Question
      */
     public function setAnswer($answer)
@@ -262,7 +279,7 @@ class Question
     /**
      * Get answer
      *
-     * @return integer
+     * @return integer 
      */
     public function getAnswer()
     {
@@ -272,7 +289,7 @@ class Question
     /**
      * Set views
      *
-     * @param  integer  $views
+     * @param integer $views
      * @return Question
      */
     public function setViews($views)
@@ -285,7 +302,7 @@ class Question
     /**
      * Get views
      *
-     * @return integer
+     * @return integer 
      */
     public function getViews()
     {
@@ -295,7 +312,7 @@ class Question
     /**
      * Set created
      *
-     * @param  \DateTime $created
+     * @param \DateTime $created
      * @return Question
      */
     public function setCreated($created)
@@ -308,7 +325,7 @@ class Question
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreated()
     {
@@ -318,7 +335,7 @@ class Question
     /**
      * Set updated
      *
-     * @param  \DateTime $updated
+     * @param \DateTime $updated
      * @return Question
      */
     public function setUpdated($updated)
@@ -331,7 +348,7 @@ class Question
     /**
      * Get updated
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdated()
     {
@@ -341,7 +358,7 @@ class Question
     /**
      * Set deletedAt
      *
-     * @param  \DateTime $deletedAt
+     * @param \DateTime $deletedAt
      * @return Question
      */
     public function setDeletedAt($deletedAt)
@@ -354,7 +371,7 @@ class Question
     /**
      * Get deletedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDeletedAt()
     {
@@ -364,22 +381,31 @@ class Question
     /**
      * Add tags
      *
-     * @param  \AppBundle\Entity\Tag $tags
+     * @param  $tags
      * @return Question
      */
-    public function addTag(\AppBundle\Entity\Tag $tags)
+    public function AddTag($tags)
     {
         $this->tags[] = $tags;
-
         return $this;
     }
 
     /**
+     * Set tags
+     *
+     * @param $tags
+     */
+    public function setTags($tags){
+        foreach($tags as $tag){
+            $this->addTag($tag);
+        }
+    }
+    /**
      * Remove tags
      *
-     * @param \AppBundle\Entity\Tag $tags
+     * @param $tags
      */
-    public function removeTag(\AppBundle\Entity\Tag $tags)
+    public function removeTag($tags)
     {
         $this->tags->removeElement($tags);
     }
@@ -387,7 +413,7 @@ class Question
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getTags()
     {
@@ -397,7 +423,7 @@ class Question
     /**
      * Add response
      *
-     * @param  \AppBundle\Entity\Response $response
+     * @param \AppBundle\Entity\Response $response
      * @return Question
      */
     public function addResponse(\AppBundle\Entity\Response $response)
@@ -420,33 +446,10 @@ class Question
     /**
      * Get response
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getResponse()
     {
         return $this->response;
-    }
-
-    /**
-     * Set code
-     *
-     * @param  string   $code
-     * @return Question
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    /**
-     * Get code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
     }
 }
