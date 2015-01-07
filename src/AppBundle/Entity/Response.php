@@ -30,13 +30,12 @@ class Response
      * @var string
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="response",cascade={"persist"})
      * @ORM\JoinColumn(name="question", referencedColumnName="id")
-     * @Assert\NotBlank()
      */
     protected $question;
 
     /**
      * @var string
-     * @ORM\Column(name="code", type="text")
+     * @ORM\Column(name="code", type="text", nullable=true)
      */
     protected $code;
 
