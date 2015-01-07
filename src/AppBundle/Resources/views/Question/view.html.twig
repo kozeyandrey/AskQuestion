@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+    <div class="container">
+{% for quest in question %}
+<h1>{{ quest.title }}</h1>
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-10">
+                    <b>Description:</b>
+                <p>{{ quest.description }}</p>
+                    <b>Code:</b>
+                <p>{{ quest.code }}</p>
+                    {% for tag in quest.tags %}
+                        <a href="a" class="btn btn-primary" role="button">{{ tag.name }}</a>
+                    {% endfor %}
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="nav nav-pills" role="tablist">
+                            <li role="presentation"><a href="#">Like<span class="badge">42</span></a></li>
+                            <li role="presentation"><a href="#">Dislike<span class="badge">42</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+    </div>
+
+{% endblock %}
