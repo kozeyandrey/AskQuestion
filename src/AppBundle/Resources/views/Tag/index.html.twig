@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+    <div class="container">
+        <h1>Tags</h1>
+        <hr>
+            {% for tag in tags %}
+                <div class="row col-lg-12">
+                    <div class="col-lg-3 thumbnail">
+                        <a href="a" class="btn btn-primary" role="button">{{ tag.name }}</a>
+                        {{ tag.created|date }}
+                    </div>
+                    </div>
+            {% endfor %}
+    </div>
+{% endblock %}
+
+

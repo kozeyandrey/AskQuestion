@@ -22,3 +22,8 @@ unanswered:
     path: /unanswered
     methods: [GET]
     defaults: { _controller: AppBundle:Question:unanswered}
+
+tags:
+    path: /tags
+    methods: [GET]
+    defaults: { _controller: AppBundle:Tag:index}
