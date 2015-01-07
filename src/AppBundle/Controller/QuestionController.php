@@ -43,12 +43,19 @@ class QuestionController extends Controller
     /**
      * This method show all questions
      *
+     * @param Request $request
      * @return array
      *
-     * @Template()
+     * @Template
      */
-    public function allAction(){
+    public function allAction(Request $request){
         $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $questions = $paginator->paginate(
+            $questions,
+            $request->query->get('page', 1),
+            7
+        );
         return [
             "questions"=>$questions
         ];
