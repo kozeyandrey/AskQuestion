@@ -22,10 +22,10 @@ class TagController extends Controller
     {
         $tags = $this->getDoctrine()->getManager()->getRepository("AppBundle:Tag")->findAll();
         $paginator  = $this->get('knp_paginator');
-        $questions = $paginator->paginate(
+        $tags = $paginator->paginate(
             $tags,
             $request->query->get('page', 1),
-            10
+            30
         );
 
         return [
