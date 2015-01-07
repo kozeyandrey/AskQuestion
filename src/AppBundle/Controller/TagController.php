@@ -5,13 +5,14 @@ namespace AppBundle\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template as Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Question;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use AppBundle\Entity\Tag;
 use Symfony\Component\HttpFoundation\Request;
 
 class TagController extends Controller
 {
     /**
-     * This method render all questions
+     * This method render all tags
      *
      * @param Request $request
      * @return array
@@ -30,6 +31,21 @@ class TagController extends Controller
 
         return [
             'tags'=>$tags
+        ];
+    }
+
+    /**
+     * This method render all question this tag
+     *
+     * @param Tag $tag
+     * @return array
+     * @ParamConverter("tag", options={"mapping": {"slug": "slug"}})
+     *
+     * @Template()
+     */
+    public function viewAction(Tag $tag){
+        return[
+          'tag'=>$tag
         ];
     }
 }

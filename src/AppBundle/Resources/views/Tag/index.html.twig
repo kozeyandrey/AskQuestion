@@ -7,7 +7,7 @@
             {% for tag in tags %}
                 <div class="row col-lg-12">
                     <div class="col-lg-3 thumbnail">
-                        <a href="a" class="btn btn-primary" role="button">{{ tag.name }}</a>
+                        <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                         {{ tag.created|date }}
                     </div>
                     <div class="col-lg-12">

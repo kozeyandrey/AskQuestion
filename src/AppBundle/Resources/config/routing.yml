@@ -27,3 +27,8 @@ tags:
     path: /tags
     methods: [GET]
     defaults: { _controller: AppBundle:Tag:index}
+
+view_tag:
+    path: /{slug}/tag_view
+    methods: [GET]
+    defaults: { _controller: AppBundle:Tag:view}
