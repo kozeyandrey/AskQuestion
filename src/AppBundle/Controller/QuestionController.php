@@ -55,6 +55,20 @@ class QuestionController extends Controller
     }
 
     /**
+     *  This method show all unanswered questions
+     *
+     * @return array
+     *
+     * @Template()
+     */
+    public function unansweredAction(){
+        $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        return [
+            "questions"=>$questions
+        ];
+    }
+
+    /**
      * This method render information about question
      *
      * @param $slug

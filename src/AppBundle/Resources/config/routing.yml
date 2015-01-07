@@ -17,3 +17,8 @@ view:
     path: /{slug}/view
     methods: [GET,POST]
     defaults: { _controller: AppBundle:Question:view }
+
+unanswered:
+    path: /unanswered
+    methods: [GET]
+    defaults: { _controller: AppBundle:Question:unanswered}
