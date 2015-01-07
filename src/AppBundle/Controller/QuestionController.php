@@ -52,4 +52,19 @@ class QuestionController extends Controller
             "questions"=>$questions
         ];
     }
+
+    /**
+     * This method render information about question
+     *
+     * @param $slug
+     * @return array
+     *
+     * @Template()
+     */
+    public function viewAction($slug){
+        $question = $this->manager()->getRepository("AppBundle:Question")->findBySlug($slug);
+        return [
+            'question'=>$question
+        ];
+    }
 }
