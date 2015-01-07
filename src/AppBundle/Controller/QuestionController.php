@@ -83,16 +83,16 @@ class QuestionController extends Controller
     }
 
     /**
-     * This method render information about question
+     *  This method render information about question
      *
-     * @param $slug
      * @param Request $request
+     * @param Question $question
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @ParamConverter("question", options={"mapping": {"slug": "slug"}})
      *
      * @Template()
      */
-    public function viewAction(Request $request,$slug){
-        $question = $this->manager()->getRepository("AppBundle:Question")->findOneBySlug($slug);
+    public function viewAction(Request $request,Question $question){
         $title = $this->manager()->getRepository("AppBundle:Question")->findOneByTitle($question->getTitle());
         $response = new Response();
         $form = $this->createForm(new ResponseType(), $response);
@@ -101,9 +101,8 @@ class QuestionController extends Controller
             $response->setQuestion($title);
             $this->manager()->persist($response);
             $this->manager()->flush();
-            return $this->redirectToRoute('view', ['slug' => $slug]);
+            return $this->redirectToRoute('view', ['slug' => $question->getSlug()]);
         }
-        dump($question->getTitle());
         return [
             'question'=>$question,
             'form' => $form->createView()
