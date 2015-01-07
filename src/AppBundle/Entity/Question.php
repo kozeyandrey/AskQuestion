@@ -76,13 +76,6 @@ class Question
     /**
      * @var integer
      *
-     * @ORM\Column(name="answer", type="integer")
-     */
-    protected $answer;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="views", type="integer")
      */
     protected $views;
@@ -262,30 +255,6 @@ class Question
     {
         return $this->slug;
     }
-
-    /**
-     * Set answer
-     *
-     * @param integer $answer
-     * @return Question
-     */
-    public function setAnswer($answer)
-    {
-        $this->answer = $answer;
-
-        return $this;
-    }
-
-    /**
-     * Get answer
-     *
-     * @return integer 
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
-    }
-
     /**
      * Set views
      *
