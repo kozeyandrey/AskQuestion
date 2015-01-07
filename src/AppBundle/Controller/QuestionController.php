@@ -43,28 +43,56 @@ class QuestionController extends Controller
     /**
      * This method show all questions
      *
+     * @param Request $request
      * @return array
      *
-     * @Template()
+     * @Template
      */
-    public function allAction(){
+    public function allAction(Request $request){
         $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $questions = $paginator->paginate(
+            $questions,
+            $request->query->get('page', 1),
+            7
+        );
         return [
             "questions"=>$questions
         ];
     }
 
     /**
-     * This method render information about question
+     *  This method show all unanswered questions
      *
-     * @param $slug
      * @param Request $request
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return array
      *
      * @Template()
      */
-    public function viewAction(Request $request,$slug){
-        $question = $this->manager()->getRepository("AppBundle:Question")->findOneBySlug($slug);
+    public function unansweredAction(Request $request){
+        $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $questions = $paginator->paginate(
+            $questions,
+            $request->query->get('page', 1),
+            7
+        );
+        return [
+            "questions"=>$questions
+        ];
+    }
+
+    /**
+     *  This method render information about question
+     *
+     * @param Request $request
+     * @param Question $question
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @ParamConverter("question", options={"mapping": {"slug": "slug"}})
+     *
+     * @Template()
+     */
+    public function viewAction(Request $request,Question $question){
         $title = $this->manager()->getRepository("AppBundle:Question")->findOneByTitle($question->getTitle());
         $response = new Response();
         $form = $this->createForm(new ResponseType(), $response);
@@ -73,9 +101,8 @@ class QuestionController extends Controller
             $response->setQuestion($title);
             $this->manager()->persist($response);
             $this->manager()->flush();
-            return $this->redirectToRoute('view', ['slug' => $slug]);
+            return $this->redirectToRoute('view', ['slug' => $question->getSlug()]);
         }
-        dump($question->getTitle());
         return [
             'question'=>$question,
             'form' => $form->createView()

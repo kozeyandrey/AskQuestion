@@ -40,8 +40,10 @@
                         <div class="col-md-10">
                                     <b>Description:</b>
                                     <p>{{ response.description }}</p>
+                            {% if response.code %}
                                     <b>Code:</b>
                                     <p>{{ response.code }}</p>
+                                {% endif %}
                         </div>
                         <div class="col-md-2">
                             <ul class="nav nav-pills" role="tablist">
