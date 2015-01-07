@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Response;
 use AppBundle\Form\Type\AskQuestionType;
+use AppBundle\Form\Type\ResponseType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template as Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -33,7 +34,7 @@ class QuestionController extends Controller
             $question->setTags($form->get('tags')->getData());
             $this->manager()->persist($question);
             $this->manager()->flush();
-            return $this->redirect($this->generateUrl('home'));
+            return $this->redirectToRoute('ask', ['slug' => $question->getSlug()]);
             }
         return $this->render('AppBundle:Question:ask.html.twig', array(
             'form' => $form->createView()));
@@ -57,14 +58,27 @@ class QuestionController extends Controller
      * This method render information about question
      *
      * @param $slug
-     * @return array
+     * @param Request $request
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Template()
      */
-    public function viewAction($slug){
-        $question = $this->manager()->getRepository("AppBundle:Question")->findBySlug($slug);
+    public function viewAction(Request $request,$slug){
+        $question = $this->manager()->getRepository("AppBundle:Question")->findOneBySlug($slug);
+        $title = $this->manager()->getRepository("AppBundle:Question")->findOneByTitle($question->getTitle());
+        $response = new Response();
+        $form = $this->createForm(new ResponseType(), $response);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $response->setQuestion($title);
+            $this->manager()->persist($response);
+            $this->manager()->flush();
+            return $this->redirectToRoute('view', ['slug' => $slug]);
+        }
+        dump($question->getTitle());
         return [
-            'question'=>$question
+            'question'=>$question,
+            'form' => $form->createView()
         ];
     }
 }

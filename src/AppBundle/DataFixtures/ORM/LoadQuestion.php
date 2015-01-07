@@ -38,6 +38,6 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3; // the order in which fixtures will be loaded
+        return 2; // the order in which fixtures will be loaded
     }
 }

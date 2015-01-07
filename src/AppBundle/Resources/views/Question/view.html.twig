@@ -2,18 +2,17 @@
 {% block body %}
 
     <div class="container">
-{% for quest in question %}
-<h1>{{ quest.title }}</h1>
+<h1>{{ question.title }}</h1>
     <div class="row">
         <div class="col-xs-12 col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-10">
                     <b>Description:</b>
-                <p>{{ quest.description }}</p>
+                <p>{{ question.description }}</p>
                     <b>Code:</b>
-                <p>{{ quest.code }}</p>
-                    {% for tag in quest.tags %}
+                <p>{{ question.code }}</p>
+                    {% for tag in question.tags %}
                         <a href="a" class="btn btn-primary" role="button">{{ tag.name }}</a>
                     {% endfor %}
                     </div>
@@ -27,7 +26,55 @@
             </div>
         </div>
     </div>
-{% endfor %}
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                {% if question.response %}
+                    {% if question.response|length >1 %}
+                    <h1>{{ question.response|length }} Answers</h1>
+                        {% elseif question.response|length == 1 %}
+                            <h1>{{ question.response|length }} Answer</h1>
+                            {% endif %}
+                {% for response in question.response %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-10">
+                                    <b>Description:</b>
+                                    <p>{{ response.description }}</p>
+                                    <b>Code:</b>
+                                    <p>{{ response.code }}</p>
+                        </div>
+                        <div class="col-md-2">
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation"><a href="#">Like<span class="badge">42</span></a></li>
+                                <li role="presentation"><a href="#">Dislike<span class="badge">42</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <legend>Your Answer:</legend>
+            <div class="active">
+                <b>Description</b>
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': "form-control"}}) }}
+            </div>
+            <br/>
+            <div class="active">
+                <b>Code</b>
+                {{ form_errors(form.code) }}
+                {{ form_widget(form.code, {'attr': {'class': "form-control"}}) }}
+            </div>
+            <br/>
+            <div class="panel-body">
+                <input type="submit" class="btn btn-primary" value="Send">
+            </div>
+            {{ form_end(form) }}
+        </div>
     </div>
-
 {% endblock %}
