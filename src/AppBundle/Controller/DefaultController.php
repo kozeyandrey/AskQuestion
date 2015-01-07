@@ -26,7 +26,7 @@ class DefaultController extends Controller
         $questions = $paginator->paginate(
             $questions,
             $request->query->get('page', 1),
-            10
+            7
         );
 
         return [
