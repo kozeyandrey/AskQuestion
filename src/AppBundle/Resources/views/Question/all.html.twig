@@ -16,9 +16,9 @@
                                 <h5>Answer</h5>
                             </div>
                             <div class="col-md-8">
-                                <h3><a href="#">{{ question.title }}</a></h3>
+                                <h3><a href="{{ path('view', {'slug':question.slug}) }}">{{ question.title }}</a></h3>
                                 {% for tag in question.tags %}
-                                    <a href="#" class="btn btn-primary" role="button">{{ tag.name }}</a>
+                                    <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                                 {% endfor %}
                             </div>
                             <div class="col-md-2">
