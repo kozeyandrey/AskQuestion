@@ -28,9 +28,20 @@
             {{ form_widget(form.tags.name) }}
         </div>
         <br/>
-        <div class="panel-body">
-            <input type="submit" class="btn btn-primary" value="Send">
+        <div class="info-tags">
+            <input id="write-tags-number" type="text" placeholder="Write the number of tags and press Enter" class="form-control" name="count"/><br/>
+            <ul id="writing-tags"></ul>
         </div>
+        <div class="panel-body">
+            <input type="submit" class="btn btn-primary" value="Send" name="send">
+        </div>
+
         {{ form_end(form) }}
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/app/js/main.js') }}"></script>
 {% endblock %}
