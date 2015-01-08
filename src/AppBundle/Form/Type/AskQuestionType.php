@@ -12,8 +12,7 @@ class AskQuestionType extends AbstractType
         $builder
             ->add('title','text')
             ->add('description')
-            ->add('code')
-            ->add('tags', new TagType());
+            ->add('code');
     }
 
     public function getName()
