@@ -104,6 +104,10 @@ class Question
      */
     public function __construct()
     {
+        $this->answer = 0;
+        $this->views = 0;
+        $this->like = 0;
+        $this->dislike = 0;
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -357,17 +361,6 @@ class Question
     {
         $this->tags[] = $tags;
         return $this;
-    }
-
-    /**
-     * Set tags
-     *
-     * @param $tags
-     */
-    public function setTags($tags){
-        foreach($tags as $tag){
-            $this->addTag($tag);
-        }
     }
     /**
      * Remove tags

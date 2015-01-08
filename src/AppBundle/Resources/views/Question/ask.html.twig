@@ -10,6 +10,11 @@
             {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
         </div>
         <br/>
+        <div class="info-tags">
+            <b>{{ "ask.tags"|trans }}</b>
+            <input id="write-tags-number" type="text" placeholder="Write the number of tags and press Enter" class="form-control" name="count"/><br/>
+            <ul id="writing-tags"></ul>
+        </div>
         <div class="active">
             <b>{{ "ask.description"|trans }}</b>
             {{ form_errors(form.description) }}
@@ -22,11 +27,6 @@
             {{ form_widget(form.code, {'attr': {'class': "form-control"}}) }}
         </div>
         <br/>
-        <div class="info-tags">
-            <b>{{ "ask.tags"|trans }}</b>
-            <input id="write-tags-number" type="text" placeholder="Write the number of tags and press Enter" class="form-control" name="count"/><br/>
-            <ul id="writing-tags"></ul>
-        </div>
         <div class="panel-body">
             <input type="submit" class="btn btn-primary" value="Send" name="send" id="submit_send">
         </div>

@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Question;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Tag;
 
 class QuestionController extends Controller
 {
@@ -31,10 +32,15 @@ class QuestionController extends Controller
         $form = $this->createForm(new AskQuestionType(), $question);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $question->setTags($request->request->get('tag'));
+            foreach ($request->request->get('tag') as $one_tag) {
+                $tag = new Tag();
+                $tag->setName($one_tag);
+                $question->AddTag($tag);
+                $this->manager()->persist($tag);
+            }
             $this->manager()->persist($question);
             $this->manager()->flush();
-            return $this->redirectToRoute('ask', ['slug' => $question->getSlug()]);
+            return $this->redirectToRoute('home');
             }
         return $this->render('AppBundle:Question:ask.html.twig', array(
             'form' => $form->createView()));
