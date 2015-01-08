@@ -1,0 +1,49 @@
+navbar:
+    home: "Home"
+    ask: "Ask Question"
+    all: "Questions"
+    tags: "Tags"
+    unanswered: "Unanswered"
+    language: "Language"
+
+home:
+    top: "Top questions"
+    views: "Views"
+    answer: "Answer"
+
+ask:
+    question: "Question"
+    title: "Title"
+    description: "Description"
+    code: "Code"
+    tags: "Tags"
+
+all:
+    all: "All questions"
+    views: "Views"
+    answer: "Answer"
+
+unanswered:
+    unanswered: "Unanswered questions"
+    views: "Views"
+    answer: "Answer"
+
+tags:
+    tags: "Tags"
+
+view_question:
+    description: "Description"
+    code: "Code"
+    send: "Send"
+
+answer:
+    one_answer: "Answer"
+    many_answer: "Answers"
+    description: "Description"
+    code: "Code"
+    your: "Your Answer"
+
+view_tag:
+    view_tag: "Tagged Questions"
+    views: "Views"
+    answer: "Answer"
