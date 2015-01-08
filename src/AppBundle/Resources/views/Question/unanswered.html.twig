@@ -1,31 +1,31 @@
 {% extends "::base.html.twig" %}
 {% block body %}
     <div class="container">
-        <h1>Unanswered questions</h1>
+        <h1>{{ "unanswered.unanswered"|trans }}</h1>
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {% for question in questions %}
                             {% if question.response|length == 0 %}
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <h3>{{ question.views }}</h3>
-                                    <h5>Views</h5>
+                                    <h5>{{ "unanswered.views"|trans }}</h5>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <h3>{{ question.response|length }}</h3>
-                                    <h5>Answer</h5>
+                                    <h5>{{ "unanswered.answer"|trans }}</h5>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <h3><a href="{{ path('view' ,{'slug':question.slug}) }}">{{ question.title }}</a></h3>
                                     {% for tag in question.tags %}
                                         <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                                     {% endfor %}
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <ul class="nav nav-pills" role="tablist">
-                                        <li role="presentation"><a href="#">Like<span class="badge">42</span></a></li>
-                                        <li role="presentation"><a href="#">Dislike<span class="badge">42</span></a></li>
+                                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-up">42</span></a></li>
+                                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-down">42</span></a></li>
                                     </ul>
                                 </div>
                             {% endif %}

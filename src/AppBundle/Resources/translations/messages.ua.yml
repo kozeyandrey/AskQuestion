@@ -1,0 +1,50 @@
+navbar:
+    home: "Головна"
+    ask: "Запитати питання"
+    all: "Питання"
+    tags: "Теги"
+    unanswered: "Без відповіді"
+    language: "Мова"
+
+home:
+    top: "Топ питання"
+    views: "Дивилося"
+    answer: "Відповіді"
+
+ask:
+    question: "Питання"
+    title: "Заголовок"
+    description: "Опис"
+    code: "Код"
+    tags: "Теги"
+
+all:
+    all: "Усі питання"
+    views: "Дивилося"
+    answer: "Відповіді"
+
+unanswered:
+    unanswered: "Питання без відповідей"
+    views: "Дивилося"
+    answer: "Відповіді"
+
+tags:
+    tags: "Теги"
+
+view_question:
+    description: "Опис"
+    code: "Код"
+    send: "Відправити"
+
+answer:
+    one_answer: "Відповідь"
+    many_answer: "Відповідей"
+    description: "Опис"
+    code: "Код"
+    your: "Ваша відповідь"
+
+
+view_tag:
+    view_tag: "Запитання по тегу"
+    views: "Дивилося"
+    answer: "Відповіді"

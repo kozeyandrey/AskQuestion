@@ -3,27 +3,27 @@
     <div class="container">
         {{ form_start(form) }}
         {{ form_errors(form) }}
-        <legend>Question:</legend>
+        <legend>{{ "ask.question"|trans }}:</legend>
         <div class="active">
-            <b>Title</b>
+            <b>{{ "ask.title"|trans }}</b>
             {{ form_errors(form.title) }}
             {{ form_widget(form.title, {'attr': {'class': "form-control"}}) }}
         </div>
         <br/>
         <div class="active">
-            <b>Description</b>
+            <b>{{ "ask.description"|trans }}</b>
             {{ form_errors(form.description) }}
             {{ form_widget(form.description, {'attr': {'class': "form-control"}}) }}
         </div>
         <br/>
         <div class="active">
-            <b>Code</b>
+            <b>{{ "ask.code"|trans }}</b>
             {{ form_errors(form.code) }}
             {{ form_widget(form.code, {'attr': {'class': "form-control"}}) }}
         </div>
         <br/>
         <div class="active">
-            <b>Tag</b>
+            <b>{{ "ask.tags"|trans }}</b>
             {{ form_errors(form.tags) }}
             {{ form_widget(form.tags.name) }}
         </div>
