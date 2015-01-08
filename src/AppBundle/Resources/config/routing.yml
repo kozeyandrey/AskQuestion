@@ -1,34 +1,47 @@
 home:
-     path: /
+     path: /{_locale}
      methods: [GET]
-     defaults: { _controller: AppBundle:Default:index}
+     defaults: { _controller: AppBundle:Default:index, _locale: ua}
+     requirements:
+             _locale: en|ua
 
 ask:
-    path: /ask
+    path: /ask/{_locale}
     methods: [GET,POST]
-    defaults: { _controller: AppBundle:Question:ask}
-
+    defaults: { _controller: AppBundle:Question:ask, _locale: ua}
+    requirements:
+             _locale: en|ua
 all:
-    path: /all
+    path: /all/{_locale}
     methods: [GET]
-    defaults: { _controller: AppBundle:Question:all}
+    defaults: { _controller: AppBundle:Question:all, _locale: ua}
+    requirements:
+             _locale: en|ua
 
 view:
-    path: /{slug}/view
+    path: /{slug}/view/{_locale}
     methods: [GET,POST]
-    defaults: { _controller: AppBundle:Question:view }
+    defaults: { _controller: AppBundle:Question:view, _locale: ua }
+    requirements:
+             _locale: en|ua
 
 unanswered:
-    path: /unanswered
+    path: /unanswered/{_locale}
     methods: [GET]
-    defaults: { _controller: AppBundle:Question:unanswered}
+    defaults: { _controller: AppBundle:Question:unanswered, _locale: ua}
+    requirements:
+             _locale: en|ua
 
 tags:
-    path: /tags
+    path: /tags/{_locale}
     methods: [GET]
-    defaults: { _controller: AppBundle:Tag:index}
+    defaults: { _controller: AppBundle:Tag:index, _locale: ua}
+    requirements:
+             _locale: en|ua
 
 view_tag:
-    path: /{slug}/tag_view
+    path: /{slug}/tag_view/{_locale}
     methods: [GET]
-    defaults: { _controller: AppBundle:Tag:view}
+    defaults: { _controller: AppBundle:Tag:view, _locale: ua}
+    requirements:
+             _locale: en|ua
