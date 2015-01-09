@@ -34,9 +34,13 @@ class QuestionController extends Controller
         if ($form->isValid()) {
             foreach ($request->request->get('tag') as $one_tag) {
                 $tag = new Tag();
-                $tag->setName($one_tag);
-                $question->AddTag($tag);
-                $this->manager()->persist($tag);
+                $find = $this->manager()->getRepository('AppBundle:Tag')->findOneByName($one_tag);
+                if ($find) {
+                    $question->AddTag($find);
+                }else{
+                    $tag->setName($one_tag);
+                    $question->AddTag($tag);
+                }
             }
             $this->manager()->persist($question);
             $this->manager()->flush();

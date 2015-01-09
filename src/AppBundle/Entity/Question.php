@@ -43,7 +43,7 @@ class Question
 
     /**
      * @var string
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="questions")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="questions", cascade={"persist"})
      * @ORM\JoinTable(name="tag_and_question")
      */
     protected $tags;
@@ -112,10 +112,11 @@ class Question
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -138,7 +139,7 @@ class Question
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -161,7 +162,7 @@ class Question
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -184,7 +185,7 @@ class Question
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -207,7 +208,7 @@ class Question
     /**
      * Get like
      *
-     * @return integer 
+     * @return integer
      */
     public function getLike()
     {
@@ -230,7 +231,7 @@ class Question
     /**
      * Get dislike
      *
-     * @return integer 
+     * @return integer
      */
     public function getDislike()
     {
@@ -253,12 +254,13 @@ class Question
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
+
     /**
      * Set views
      *
@@ -275,7 +277,7 @@ class Question
     /**
      * Get views
      *
-     * @return integer 
+     * @return integer
      */
     public function getViews()
     {
@@ -298,7 +300,7 @@ class Question
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -321,7 +323,7 @@ class Question
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -344,7 +346,7 @@ class Question
     /**
      * Get deletedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeletedAt()
     {
@@ -354,20 +356,22 @@ class Question
     /**
      * Add tags
      *
-     * @param  $tags
+     * @param \AppBundle\Entity\Tag $tags
      * @return Question
      */
-    public function AddTag($tags)
+    public function addTag(\AppBundle\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
+
         return $this;
     }
+
     /**
      * Remove tags
      *
-     * @param $tags
+     * @param \AppBundle\Entity\Tag $tags
      */
-    public function removeTag($tags)
+    public function removeTag(\AppBundle\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
     }
