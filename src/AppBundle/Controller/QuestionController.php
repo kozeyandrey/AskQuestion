@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template as Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Event\ViewQuestionEvent;
 use AppBundle\Entity\Question;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Tag;
@@ -104,6 +105,8 @@ class QuestionController extends Controller
      */
     public function viewAction(Request $request,Question $question){
         $title = $this->manager()->getRepository("AppBundle:Question")->findOneByTitle($question->getTitle());
+        $event = new ViewQuestionEvent();
+        $event->setSlug($question->getSlug());
         $response = new Response();
         $form = $this->createForm(new ResponseType(), $response);
         $form->handleRequest($request);
