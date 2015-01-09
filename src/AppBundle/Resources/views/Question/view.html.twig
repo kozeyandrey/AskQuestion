@@ -16,12 +16,6 @@
                         <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                     {% endfor %}
                     </div>
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills" role="tablist">
-                            <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-up">{{ question.like }}</span></a></li>
-                            <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-down">{{ question.dislike }}</span></a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -44,12 +38,6 @@
                                     <b>{{ "answer.code"|trans }}:</b>
                                     <p>{{ response.code }}</p>
                                 {% endif %}
-                        </div>
-                        <div class="col-md-2">
-                            <ul class="nav nav-pills" role="tablist">
-                                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-up">{{ question.like }}</span></a></li>
-                                <li role="presentation"><a href="#"><span class="glyphicon glyphicon-thumbs-down">{{ question.dislike }}</span></a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>

@@ -54,20 +54,6 @@ class Question
     protected $response;
 
     /**
-     * @var integer
-     * @Assert\Range(min = 0)
-     * @ORM\Column(type="integer", name="question_like")
-     */
-    private $like;
-
-    /**
-     * @var integer
-     * @Assert\Range(min = 0)
-     * @ORM\Column(type="integer", name="question_dislike")
-     */
-    private $dislike;
-
-    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=128, unique=true)
      */
@@ -106,8 +92,6 @@ class Question
     {
         $this->answer = 0;
         $this->views = 0;
-        $this->like = 0;
-        $this->dislike = 0;
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->response = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -190,52 +174,6 @@ class Question
     public function getCode()
     {
         return $this->code;
-    }
-
-    /**
-     * Set like
-     *
-     * @param integer $like
-     * @return Question
-     */
-    public function setLike($like)
-    {
-        $this->like = $like;
-
-        return $this;
-    }
-
-    /**
-     * Get like
-     *
-     * @return integer
-     */
-    public function getLike()
-    {
-        return $this->like;
-    }
-
-    /**
-     * Set dislike
-     *
-     * @param integer $dislike
-     * @return Question
-     */
-    public function setDislike($dislike)
-    {
-        $this->dislike = $dislike;
-
-        return $this;
-    }
-
-    /**
-     * Get dislike
-     *
-     * @return integer
-     */
-    public function getDislike()
-    {
-        return $this->dislike;
     }
 
     /**
