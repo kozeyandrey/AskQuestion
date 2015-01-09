@@ -4,7 +4,8 @@ home:
      defaults: { _controller: AppBundle:Default:index, _locale: ua}
      requirements:
              _locale: en|ua
-
+     options:
+         expose: true
 ask:
     path: /ask/{_locale}
     methods: [GET,POST]
