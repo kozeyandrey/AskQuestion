@@ -17,7 +17,7 @@
                                 <h3>{{ question.response|length }}</h3>
                                 <h5>{{ "view_tag.answer"|trans }}</h5>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <h3><a href="{{ path('view' ,{'slug':question.slug}) }}">{{ question.title }}</a></h3>
                                 {% for tag in question.tags %}
                                     <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>

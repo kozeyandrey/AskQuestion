@@ -13,6 +13,7 @@ use AppBundle\Event\ViewQuestionEvent;
 use AppBundle\Entity\Question;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Tag;
+use AppBundle\Services\ViewService;
 
 class QuestionController extends Controller
 {
@@ -33,14 +34,17 @@ class QuestionController extends Controller
         $form = $this->createForm(new AskQuestionType(), $question);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            foreach ($request->request->get('tag') as $one_tag) {
-                $tag = new Tag();
-                $find = $this->manager()->getRepository('AppBundle:Tag')->findOneByName($one_tag);
-                if ($find) {
-                    $question->AddTag($find);
-                }else{
-                    $tag->setName($one_tag);
-                    $question->AddTag($tag);
+            if($request->request->get('tag')) {
+                foreach ($request->request->get('tag') as $one_tag) {
+                    $tag = new Tag();
+                    $find = $this->manager()->getRepository('AppBundle:Tag')->findOneByName($one_tag);
+                    if ($find) {
+                        $question->AddTag($find);
+                    } else {
+                        $register = ucfirst($one_tag);
+                        $tag->setName($register);
+                        $question->AddTag($tag);
+                    }
                 }
             }
             $this->manager()->persist($question);
@@ -104,9 +108,11 @@ class QuestionController extends Controller
      * @Template()
      */
     public function viewAction(Request $request,Question $question){
-        $title = $this->manager()->getRepository("AppBundle:Question")->findOneByTitle($question->getTitle());
-        $event = new ViewQuestionEvent();
-        $event->setSlug($question->getSlug());
+        $title = $this->manager()->getRepository("AppBundle:Question")->findOneBySlug($question->getSlug());
+//        $event = new ViewQuestionEvent();
+//        $event->setSlug($question->getSlug());
+        $view = new ViewService();
+        $view->view($title);
         $response = new Response();
         $form = $this->createForm(new ResponseType(), $response);
         $form->handleRequest($request);
@@ -116,6 +122,8 @@ class QuestionController extends Controller
             $this->manager()->flush();
             return $this->redirectToRoute('view', ['slug' => $question->getSlug()]);
         }
+        $this->manager()->persist($question);
+        $this->manager()->flush();
         return [
             'question'=>$question,
             'form' => $form->createView()
