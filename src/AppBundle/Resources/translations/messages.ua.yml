@@ -17,6 +17,7 @@ ask:
     description: "Опис"
     code: "Код"
     tags: "Теги"
+    send: "Відправити"
 
 all:
     all: "Усі питання"

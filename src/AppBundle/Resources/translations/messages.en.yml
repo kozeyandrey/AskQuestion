@@ -17,6 +17,7 @@ ask:
     description: "Description"
     code: "Code"
     tags: "Tags"
+    send: "Send"
 
 all:
     all: "All questions"
