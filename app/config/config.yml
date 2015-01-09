@@ -92,8 +92,8 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 services:
-    kernel.listener.view:
-        class: AppBundle\EventListener\ViewEventListener
-        arguments: ["@doctrine.orm.entity_manager"]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onViewQuestion }
+#    kernel.listener.view:
+#        class: AppBundle\EventListener\ViewEventListener
+#        arguments: ["@doctrine.orm.entity_manager"]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception, method: onViewQuestion }
