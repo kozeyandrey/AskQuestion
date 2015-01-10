@@ -20,9 +20,7 @@ class LoadQuestion extends AbstractFixture implements OrderedFixtureInterface
             ->setDescription("string")
             ->setCode('string')
             ->addTag($this->getReference('tag-github'),$this->getReference('tag-github'),$this->getReference('tag-github'))
-            ->setLike(1)
-            ->setDislike(1)
-            ->setViews(1)
+            ->setViews(0)
         ;
 
         $manager->persist($question);
