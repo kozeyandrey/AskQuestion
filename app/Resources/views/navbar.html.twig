@@ -19,7 +19,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>{% if user %}
                             <a class="navbar-brand" href="{{ path('ask') }}">{{"navbar.ask"|trans }}</a>
-                            <a class="navbar-brand" href="#">{{ "navbar.your_questions"|trans }}</a>
+                            <a class="navbar-brand" href="{{ path('questions') }}">{{ "navbar.your_questions"|trans }}</a>
                             <a class="navbar-brand" href="{{ path('logout') }}">{{ "navbar.logout"|trans }}</a>
                         {% else %}
                             <a class="navbar-brand" href="{{ path('login') }}">{{ "navbar.login"|trans }}</a>
