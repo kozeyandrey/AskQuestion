@@ -5,23 +5,27 @@
         <h1>{{ "view_tag.view_tag"|trans }}</h1>
         <hr>
         <div class="row">
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-11">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         {% for question in tag.questions %}
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <h3>{{ question.views }}</h3>
                                 <h5>{{ "view_tag.views"|trans }}</h5>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <h3>{{ question.response|length }}</h3>
                                 <h5>{{ "view_tag.answer"|trans }}</h5>
                             </div>
-                            <div class="col-md-8">
-                                <h3><a href="{{ path('view' ,{'slug':question.slug}) }}">{{ question.title }}</a></h3>
+                            <div class="col-md-7">
+                                <h5><a href="{{ path('view' ,{'slug':question.slug}) }}">{{ question.title }}</a></h5>
                                 {% for tag in question.tags %}
                                     <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                                 {% endfor %}
+                            </div>
+                            <div class="col-md-3">
+                                <h5>{{ question.created|date }}</h5>
+                                <h5>{{ question.user.email }}</h5>
                             </div>
                         {% endfor %}
                     </div>

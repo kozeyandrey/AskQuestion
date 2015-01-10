@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user", indexes={@ORM\Index(name="email", columns={"email"})})
+ * @ORM\Table(name="user")
  */
 class User
 {
@@ -142,10 +142,10 @@ class User
     /**
      * Add answers
      *
-     * @param \AppBundle\Entity\Response $answers
+     * @param  $answers
      * @return User
      */
-    public function addAnswer(\AppBundle\Entity\Response $answers)
+    public function addAnswer( $answers)
     {
         $this->answers[] = $answers;
 
@@ -155,9 +155,9 @@ class User
     /**
      * Remove answers
      *
-     * @param \AppBundle\Entity\Response $answers
+     * @param  $answers
      */
-    public function removeAnswer(\AppBundle\Entity\Response $answers)
+    public function removeAnswer( $answers)
     {
         $this->answers->removeElement($answers);
     }

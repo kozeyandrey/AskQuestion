@@ -68,7 +68,7 @@ class Question
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="questions", cascade={"persist"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;
@@ -367,10 +367,10 @@ class Question
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param  $user
      * @return Question
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser( $user = null)
     {
         $this->user = $user;
 

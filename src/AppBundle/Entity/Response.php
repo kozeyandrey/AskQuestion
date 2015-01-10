@@ -40,7 +40,8 @@ class Response
     protected $code;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="answers")
+     * @var string
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="answers", cascade={"persist"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     protected $user;

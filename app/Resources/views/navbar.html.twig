@@ -12,19 +12,19 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ path('home') }}">{{ "navbar.home"|trans }}</a>
-                    <a class="navbar-brand" href="{{ path('ask') }}">{{"navbar.ask"|trans }}</a>
+                    <a class="navbar-brand" href="{{ path('all') }}">{{"navbar.all"|trans }}</a>
+                    <a class="navbar-brand" href="{{ path('tags') }}">{{"navbar.tags"|trans }}</a>
+                    <a class="navbar-brand" href="{{ path('unanswered') }}">{{"navbar.unanswered"|trans }}</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>{% if user %}
+                            <a class="navbar-brand" href="{{ path('ask') }}">{{"navbar.ask"|trans }}</a>
                             <a class="navbar-brand" href="#">{{ "navbar.your_questions"|trans }}</a>
                             <a class="navbar-brand" href="{{ path('logout') }}">{{ "navbar.logout"|trans }}</a>
                         {% else %}
                             <a class="navbar-brand" href="{{ path('login') }}">{{ "navbar.login"|trans }}</a>
                             <a class="navbar-brand" href="{{ path('registration') }}">{{ "navbar.registration"|trans }}</a>
                         {% endif %}</li>
-                    <li><a class="navbar-brand" href="{{ path('all') }}">{{"navbar.all"|trans }}</a></li>
-                    <li><a class="navbar-brand" href="{{ path('tags') }}">{{"navbar.tags"|trans }}</a></li>
-                    <li><a class="navbar-brand" href="{{ path('unanswered') }}">{{"navbar.unanswered"|trans }}</a></li>
                     <li><ul class="pager">
                                 <li><a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "en"})) }}">En</a></li>
                                 <li><a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({"_locale": "ua"})) }}">Ua</a></li>

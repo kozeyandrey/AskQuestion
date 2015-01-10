@@ -18,6 +18,10 @@
                         <a href="{{ path('view_tag', {'slug':tag.slug}) }}" class="btn btn-primary" role="button">{{ tag.name }}</a>
                     {% endfor %}
                     </div>
+                    <div class="col-md-2">
+                        <h5>{{ question.created|date }}</h5>
+                        <h5>{{ question.user.email }}</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,12 +41,18 @@
                                     <b>{{ "answer.description"|trans }}:</b>
                                     <p>{{ response.description }}</p>
                             {% if response.code %}
-
                                     <b>{{ "answer.code"|trans }}:</b>
                                     <pre><code>{{ response.code }}</code></pre>
-
                                 {% endif %}
                         </div>
+
+                        <div class="col-md-2">
+                            {% if response.user.email is defined %}
+                                <h5>{{ question.user.email }}</h5>
+                            {% endif %}
+                            <h5>{{ question.created|date }}</h5>
+                        </div>
+
                     </div>
                 </div>
                 {% endfor %}

@@ -32,7 +32,7 @@ class QuestionController extends Controller
         $question = new Question();
         $form = $this->createForm(new AskQuestionType(), $question);
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($this->get('user')->check() and $form->isValid()) {
             if($request->request->get('tag')) {
                 foreach ($request->request->get('tag') as $one_tag) {
                     $tag = new Tag();
@@ -46,6 +46,9 @@ class QuestionController extends Controller
                     }
                 }
             }
+            $user = $this->get('user')->getInfo();
+            $login = $this->getDoctrine()->getRepository('AppBundle:User')->findOneByEmail($user->getEmail());
+            $question->setUser($login);
             $this->manager()->persist($question);
             $this->manager()->flush();
             return $this->redirectToRoute('home');
@@ -112,14 +115,17 @@ class QuestionController extends Controller
      */
     public function viewAction(Request $request,Question $question){
         $title = $this->manager()->getRepository("AppBundle:Question")->findOneBySlug($question->getSlug());
-//        $event = new ViewQuestionEvent();
-//        $event->setSlug($question->getSlug());
         $view = new ViewService();
         $view->view($title);
         $response = new Response();
         $form = $this->createForm(new ResponseType(), $response);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $user = $this->get('user')->getInfo();
+            if($user) {
+                $login = $this->getDoctrine()->getRepository('AppBundle:User')->findOneByEmail($user->getEmail());
+                $response->setUser($login);
+            }
             $response->setQuestion($title);
             $this->manager()->persist($response);
             $this->manager()->flush();

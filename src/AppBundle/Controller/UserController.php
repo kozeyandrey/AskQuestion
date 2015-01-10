@@ -38,6 +38,7 @@ class UserController extends Controller
     }
 
     /**
+     * This method help login in your account
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -63,10 +64,34 @@ class UserController extends Controller
     }
 
     /**
+     * This method help logout in your account
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function logoutAction(){
         $this->get('user')->logout();
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * This method show all your questions
+     *
+     * @param Request $request
+     * @return array
+     *
+     * @Template()
+     */
+    public function questionsAction(Request $request){
+        $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $questions = $paginator->paginate(
+            $questions,
+            $request->query->get('page', 1),
+            7
+        );
+        return [
+            "questions"=>$questions,
+            'user' => $this->get('user')->getInfo()
+        ];
     }
 }

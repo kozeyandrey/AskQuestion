@@ -29,5 +29,8 @@ class UserService
     {
         $this->session->set(self::INFO_USER, $user);
     }
-
+    public function Check()
+    {
+        return !!$this->session->get(self::INFO_USER);
+    }
 }
