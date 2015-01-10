@@ -67,6 +67,13 @@ class Question
     protected $views;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="questions")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -355,5 +362,28 @@ class Question
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Question
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

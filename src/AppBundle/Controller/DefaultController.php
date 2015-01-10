@@ -30,7 +30,8 @@ class DefaultController extends Controller
         );
 
         return [
-            'questions'=>$questions
+            'questions'=>$questions,
+            'user' => $this->get('user')->getInfo(),
         ];
     }
 }

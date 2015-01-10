@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <legend>Registration:</legend>
+        <div class="active">
+            <b>Email</b>
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="active">
+            <b>Password</b>
+            {{ form_errors(form.password) }}
+            {{ form_widget(form.password, {'attr': {'class': "form-control"}}) }}
+        </div>
+        <br/>
+        <div class="panel-body">
+            <input type="submit" class="btn btn-primary" value="Send" name="send" id="submit_send">
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    {#<script src="{{ asset('bundles/app/js/main.js') }}"></script>#}
+    {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+    {#<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>#}
+{% endblock %}

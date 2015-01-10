@@ -4,7 +4,10 @@ navbar:
     all: "Питання"
     tags: "Теги"
     unanswered: "Без відповіді"
-    language: "Мова"
+    login: "Ввійти"
+    registration: "Регістрація"
+    logout: "Вийти"
+    your_questions: "Ваші питання"
 
 home:
     top: "Топ питання"

@@ -4,7 +4,10 @@ navbar:
     all: "Questions"
     tags: "Tags"
     unanswered: "Unanswered"
-    language: "Language"
+    login: "Login"
+    registration: "Registration"
+    logout: "Log out"
+    your_questions: "Your questions"
 
 home:
     top: "Top questions"

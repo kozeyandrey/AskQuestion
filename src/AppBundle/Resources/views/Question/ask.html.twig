@@ -1,5 +1,6 @@
 {% extends "::base.html.twig" %}
 {% block body %}
+    {% include "::navbar.html.twig" with {'user': user}%}
     <div class="container">
         {{ form_start(form) }}
         {{ form_errors(form) }}

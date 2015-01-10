@@ -44,3 +44,24 @@ view_tag:
     defaults: { _controller: AppBundle:Tag:view, _locale: ua}
     requirements:
              _locale: en|ua
+
+registration:
+     path: /registration
+     methods: [GET,POST]
+     defaults: { _controller: AppBundle:User:registration, _locale: ua}
+     requirements:
+            _locale: en|ua
+
+login:
+     path: /login
+     methods: [GET,POST]
+     defaults: { _controller: AppBundle:User:login, _locale: ua}
+     requirements:
+            _locale: en|ua
+
+logout:
+     path: /logout
+     methods: [GET]
+     defaults: { _controller: AppBundle:User:logout, _locale: ua}
+     requirements:
+            _locale: en|ua

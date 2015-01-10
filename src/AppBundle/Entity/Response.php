@@ -40,6 +40,12 @@ class Response
     protected $code;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="answers")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -206,5 +212,28 @@ class Response
     public function getCode()
     {
         return $this->code;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Response
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

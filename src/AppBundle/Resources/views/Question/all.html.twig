@@ -1,5 +1,6 @@
 {% extends "::base.html.twig" %}
 {% block body %}
+    {% include "::navbar.html.twig" with {'user': user}%}
     <div class="container">
         <h1><h1>{{ "all.all"|trans }}</h1></h1>
         <div class="row">

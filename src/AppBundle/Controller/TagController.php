@@ -30,7 +30,8 @@ class TagController extends Controller
         );
 
         return [
-            'tags'=>$tags
+            'tags'=>$tags,
+            'user' => $this->get('user')->getInfo(),
         ];
     }
 
@@ -45,7 +46,8 @@ class TagController extends Controller
      */
     public function viewAction(Tag $tag){
         return[
-          'tag'=>$tag
+          'tag'=>$tag,
+          'user' => $this->get('user')->getInfo()
         ];
     }
 }

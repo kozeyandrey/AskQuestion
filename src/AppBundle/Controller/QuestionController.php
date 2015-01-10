@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Response;
 use AppBundle\Form\Type\AskQuestionType;
 use AppBundle\Form\Type\ResponseType;
-use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template as Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,8 +50,10 @@ class QuestionController extends Controller
             $this->manager()->flush();
             return $this->redirectToRoute('home');
             }
-        return $this->render('AppBundle:Question:ask.html.twig', array(
-            'form' => $form->createView()));
+        return [
+            'form' => $form->createView(),
+            'user' => $this->get('user')->getInfo(),
+            ];
     }
 
     /**
@@ -72,7 +73,8 @@ class QuestionController extends Controller
             7
         );
         return [
-            "questions"=>$questions
+            "questions"=>$questions,
+            'user' => $this->get('user')->getInfo()
         ];
     }
 
@@ -93,7 +95,8 @@ class QuestionController extends Controller
             7
         );
         return [
-            "questions"=>$questions
+            "questions"=>$questions,
+            'user' => $this->get('user')->getInfo(),
         ];
     }
 
@@ -126,7 +129,8 @@ class QuestionController extends Controller
         $this->manager()->flush();
         return [
             'question'=>$question,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $this->get('user')->getInfo(),
         ];
     }
 }
