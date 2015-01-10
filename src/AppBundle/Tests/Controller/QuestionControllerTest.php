@@ -15,8 +15,6 @@ class ProductControllerTest extends WebTestCase
         $container = self::$kernel->getContainer();
         $crawler = $client->request('GET', $container->get('router')->generate('ask'));
         $this->assertTrue($crawler->count() > 0);
-        $crawler = $client->request('GET', '/ask');
-        $this->assertCount(1, $crawler->selectButton('Send'));
         $this->assertTrue($client->getResponse()->isSuccessful());
         $this->assertEquals(
             Response::HTTP_OK,
