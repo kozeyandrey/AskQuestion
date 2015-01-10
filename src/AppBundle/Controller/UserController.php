@@ -82,7 +82,7 @@ class UserController extends Controller
      * @Template()
      */
     public function questionsAction(Request $request){
-        $questions = $this->manager()->getRepository("AppBundle:Question")->findAll();
+        $questions = $this->getDoctrine()->getRepository("AppBundle:Question")->findAll();
         $paginator  = $this->get('knp_paginator');
         $questions = $paginator->paginate(
             $questions,
