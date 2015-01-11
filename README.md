@@ -1,5 +1,6 @@
 Markdowns
 ==========================
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kozeyandrey/AskQuestion/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kozeyandrey/AskQuestion/?branch=master)
 [![Build Status](https://travis-ci.org/kozeyandrey/AskQuestion.svg?branch=AddTests)](https://travis-ci.org/kozeyandrey/AskQuestion)
 Ask Question Project
 ==========================
